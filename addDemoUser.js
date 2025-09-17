@@ -15,9 +15,9 @@ async function addDemoUser() {
     process.exit(0);
   }
   const user = new User({
-    name: 'Simon demo',
-    email,
-    password,
+    name: 'Simon',
+    email: 'simon-palm@hotmail.com',
+    password: 'Innebandy99',
     role: 'leader',
     status: 'approved',
     profileImageUrl: ''
