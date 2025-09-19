@@ -23,7 +23,14 @@ dotenv.config();
 
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://fbc-nykoping-lagapp.vercel.app',
+    'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app'
+  ],
+  credentials: true
+}));
 app.use(express.json());
 
 app.use('/api/users', userRoutes);
