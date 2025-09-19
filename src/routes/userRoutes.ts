@@ -20,6 +20,13 @@ router.post('/register', async (req, res) => {
     if (!name && username) {
       name = username;
     }
+    // Acceptera även om bara name finns (från befintligt formulär)
+    if (name && !firstName && !lastName) {
+      // Dela upp name till förnamn och efternamn om möjligt
+      const nameParts = name.trim().split(' ');
+      firstName = nameParts[0] || '';
+      lastName = nameParts.slice(1).join(' ') || '';
+    }
 
     // Validera lösenord
     if (confirmPassword && password !== confirmPassword) {
