@@ -27,7 +27,8 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'https://fbc-nykoping-lagapp.vercel.app',
-    'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app'
+    'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app',
+    'https://fbc-nykoping-lagapp-co18intd7-simon-palms-projects.vercel.app'
   ],
   credentials: true
 }));
