@@ -25,7 +25,15 @@ const checkInOutRoutes_1 = __importDefault(require("./routes/checkInOutRoutes"))
 const checkQuestionRoutes_1 = __importDefault(require("./routes/checkQuestionRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)({ origin: 'http://localhost:3000', credentials: true }));
+app.use((0, cors_1.default)({
+    origin: [
+        'http://localhost:3000',
+        'https://fbc-nykoping-lagapp.vercel.app',
+        'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app',
+        'https://fbc-nykoping-lagapp-co18intd7-simon-palms-projects.vercel.app'
+    ],
+    credentials: true
+}));
 app.use(express_1.default.json());
 app.use('/api/users', userRoutes_1.default);
 app.use('/api/teams', teamRoutes_1.default);
