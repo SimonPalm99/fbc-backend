@@ -24,12 +24,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://fbc-nykoping-lagapp.vercel.app',
-    'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app',
-    'https://fbc-nykoping-lagapp-co18intd7-simon-palms-projects.vercel.app'
-  ],
+  origin: true,
   credentials: true
 }));
 app.use(express.json());
@@ -52,12 +47,11 @@ app.use('/api/absences', absenceRoutes);
 app.use('/api/checks', checkInOutRoutes);
 app.use('/api/check-questions', checkQuestionRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
 const MONGO_URI = process.env.MONGO_URI || '';
-
 mongoose.connect(MONGO_URI)
   .then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
       console.log(`Server running on port ${PORT}`);
     });
   })

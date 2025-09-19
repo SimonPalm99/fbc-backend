@@ -2,6 +2,7 @@ import express from 'express';
 import User from '../models/User';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { authenticateToken, requireLeaderOrAdmin, AuthRequest } from '../middleware/auth';
 
 const router = express.Router();
 
@@ -39,8 +40,14 @@ router.post('/register', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ name, email, password: hashedPassword, role: role || 'player', status: 'pending', profileImageUrl });
-    await user.save();
-    res.status(201).json(user);
+    try {
+      const savedUser = await user.save();
+      console.log('User sparad:', savedUser);
+      res.status(201).json(savedUser);
+    } catch (saveErr: any) {
+      console.error('Fel vid user.save():', saveErr);
+      return res.status(400).json({ error: saveErr.message || JSON.stringify(saveErr) });
+    }
   } catch (err) {
     // Logga hela felet till konsolen
     console.error('Register error:', err);
