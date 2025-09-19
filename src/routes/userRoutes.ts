@@ -71,7 +71,14 @@ router.post('/login', async (req, res) => {
     console.log('Password match:', isMatch);
     if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
     const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || '', { expiresIn: '1d' });
-    res.json({ token, user });
+    res.json({ 
+      user, 
+      tokens: {
+        accessToken: token,
+        refreshToken: token, // För nu använder vi samma token
+        expiresIn: 86400 // 24 timmar i sekunder
+      }
+    });
   } catch (err) {
     res.status(400).json({ error: (err as Error).message });
   }
