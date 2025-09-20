@@ -26,12 +26,7 @@ const checkQuestionRoutes_1 = __importDefault(require("./routes/checkQuestionRou
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: [
-        'http://localhost:3000',
-        'https://fbc-nykoping-lagapp.vercel.app',
-        'https://fbc-nykoping-lagapp-h9v2c2civ-simon-palms-projects.vercel.app',
-        'https://fbc-nykoping-lagapp-co18intd7-simon-palms-projects.vercel.app'
-    ],
+    origin: true,
     credentials: true
 }));
 app.use(express_1.default.json());
@@ -51,11 +46,11 @@ app.use('/api/rules', rulesRoutes_1.default);
 app.use('/api/absences', absenceRoutes_1.default);
 app.use('/api/checks', checkInOutRoutes_1.default);
 app.use('/api/check-questions', checkQuestionRoutes_1.default);
-const PORT = process.env.PORT || 5000;
+const PORT = Number(process.env.PORT) || 5000;
 const MONGO_URI = process.env.MONGO_URI || '';
 mongoose_1.default.connect(MONGO_URI)
     .then(() => {
-    app.listen(PORT, () => {
+    app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server running on port ${PORT}`);
     });
 })

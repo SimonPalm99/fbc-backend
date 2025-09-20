@@ -1,180 +1,83 @@
-[
-  {
-    "id": "training-20250728-Måndag",
-    "title": "Träning Måndag",
-    "type": "träning",
-    "date": "2025-07-28",
-    "startTime": "20:30",
-    "location": "Sporthallen",
-    "description": "Måndag (2025-07-28) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250729-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-07-29",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-07-29) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250731-Torsdag",
-    "title": "Träning Torsdag",
-    "type": "träning",
-    "date": "2025-07-31",
-    "startTime": "20:45",
-    "location": "Sporthallen",
-    "description": "Torsdag (2025-07-31) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250804-Måndag",
-    "title": "Träning Måndag",
-    "type": "träning",
-    "date": "2025-08-04",
-    "startTime": "20:30",
-    "location": "Sporthallen",
-    "description": "Måndag (2025-08-04) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250805-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-08-05",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-08-05) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250807-Torsdag",
-    "title": "Träning Torsdag",
-    "type": "träning",
-    "date": "2025-08-07",
-    "startTime": "20:45",
-    "location": "Sporthallen",
-    "description": "Torsdag (2025-08-07) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250811-Måndag",
-    "title": "Träning Måndag",
-    "type": "träning",
-    "date": "2025-08-11",
-    "startTime": "20:30",
-    "location": "Sporthallen",
-    "description": "Måndag (2025-08-11) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250812-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-08-12",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-08-12) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250814-Torsdag",
-    "title": "Träning Torsdag",
-    "type": "träning",
-    "date": "2025-08-14",
-    "startTime": "20:45",
-    "location": "Sporthallen",
-    "description": "Torsdag (2025-08-14) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250818-Måndag",
-    "title": "Träning Måndag",
-    "type": "träning",
-    "date": "2025-08-18",
-    "startTime": "20:30",
-    "location": "Sporthallen",
-    "description": "Måndag (2025-08-18) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250819-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-08-19",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-08-19) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
+  [
+    {
+      "id": "training-20260312-Torsdag",
+      "title": "Träning Torsdag",
+      "type": "träning",
+      "date": "2025-07-28",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "location": "Sporthallen",
+      "description": "Division 1 Herrar Södra Svealand - Omgång 4. Hemmamatch mot Rosersberg Arlanda IBK.",
+      "participants": [],
+      "comments": [],
+      "tags": ["division1", "hemmamatch"],
+      "important": true,
+      "color": "#00D4AA"
+    },
+    {
+      "id": "match-580032026",
+      "title": "Huddinge IBS vs FBC Nyköping",
+      "type": "match",
+      "date": "2025-10-25",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "location": "Huddinge Sporthall",
+      "description": "Division 1 Herrar Södra Svealand - Omgång 5. Bortamatch mot Huddinge IBS.",
+      "createdBy": "leader1",
+      "participants": [],
+      "comments": [],
+      "tags": ["division1", "bortamatch"],
+      "important": true,
+        "color": "#FF6B35"
+      },
+    {
+      "id": "match-580032034",
+      "title": "FBC Nyköping vs Hässelby SK IBK",
+      "type": "match",
+      "date": "2025-11-01",
+      "startTime": "15:00",
+      "endTime": "16:30",
+      "location": "Sporthallen",
+      "description": "Division 1 Herrar Södra Svealand - Omgång 6. Hemmamatch mot Hässelby SK IBK.",
+      "createdBy": "leader1",
+      "participants": [],
+      "comments": [],
+      "tags": ["division1", "hemmamatch"],
+      "important": true,
+      "color": "#00D4AA"
+    },
+    {
+      "id": "training-20250818-Måndag",
+      "title": "Träning Måndag",
+      "type": "träning",
+      "date": "2025-08-18",
+      "startTime": "20:30",
+      "location": "Sporthallen",
+      "description": "Måndag (2025-08-18) • Samlingstid 30 min innan",
+      "createdBy": "coach1",
+      "participants": [],
+      "comments": [],
+      "tags": [
+        "ordinarie"
+      ],
+      "important": false
+    },
+    {
+      "id": "training-20250819-Tisdag",
+      "title": "Träning Tisdag",
+      "type": "träning",
+      "date": "2025-08-19",
+      "startTime": "19:30",
+      "location": "Sporthallen",
+      "description": "Tisdag (2025-08-19) • Samlingstid 30 min innan",
+      "createdBy": "coach1",
+      "participants": [],
+      "comments": [],
+      "tags": [
+        "ordinarie"
+      ],
+      "important": false
+    },
   {
     "id": "training-20250821-Torsdag",
     "title": "Träning Torsdag",
@@ -199,38 +102,6 @@
     "startTime": "20:30",
     "location": "Sporthallen",
     "description": "Måndag (2025-08-25) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250826-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-08-26",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-08-26) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20250828-Torsdag",
-    "title": "Träning Torsdag",
-    "type": "träning",
-    "date": "2025-08-28",
-    "startTime": "20:45",
-    "location": "Sporthallen",
-    "description": "Torsdag (2025-08-28) • Samlingstid 30 min innan",
     "createdBy": "coach1",
     "participants": [],
     "comments": [],
@@ -392,8 +263,6 @@
     "location": "Sporthallen",
     "description": "Måndag (2025-09-22) • Samlingstid 30 min innan",
     "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
     "tags": [
       "ordinarie"
     ],
@@ -406,10 +275,6 @@
     "date": "2025-09-23",
     "startTime": "19:30",
     "location": "Sporthallen",
-    "description": "Tisdag (2025-09-23) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
     "tags": [
       "ordinarie"
     ],
@@ -583,22 +448,6 @@
     "startTime": "20:30",
     "location": "Sporthallen",
     "description": "Måndag (2025-10-20) • Samlingstid 30 min innan",
-    "createdBy": "coach1",
-    "participants": [],
-    "comments": [],
-    "tags": [
-      "ordinarie"
-    ],
-    "important": false
-  },
-  {
-    "id": "training-20251021-Tisdag",
-    "title": "Träning Tisdag",
-    "type": "träning",
-    "date": "2025-10-21",
-    "startTime": "19:30",
-    "location": "Sporthallen",
-    "description": "Tisdag (2025-10-21) • Samlingstid 30 min innan",
     "createdBy": "coach1",
     "participants": [],
     "comments": [],
@@ -1636,5 +1485,131 @@
     ],
     "important": false,
     "color": "#4CAF50"
+  },
+  {
+    "id": "friendly-20250823-extra",
+    "title": "Bergs IK vs FBC Nyköping (Förberedelse)",
+    "type": "match",
+    "date": "2025-08-23",
+    "startTime": "13:00",
+    "location": "Vasa Arena",
+    "description": "Träningsmatch på bortaplan. Samling 11:30 (1,5 timme före matchstart).",
+    "createdBy": "coach1",
+    "participants": [],
+    "comments": [],
+    "tags": ["träningsmatch", "borta", "förberedelse"],
+    "important": false,
+    "color": "#4CAF50"
+  },
+  {
+    "id": "match-580032001",
+    "title": "Älvsjö AIK IBF vs FBC Nyköping",
+    "type": "match",
+      "date": "2025-09-21",
+    "startTime": "17:00",
+    "location": "Älvsjö Sporthall",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 1. Säsongsöppnare på bortaplan!",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "bortamatch", "säsongsöppnare"],
+    "important": false,
+    "color": "#FF6B35"
+  },
+  {
+    "id": "match-580032009",
+    "title": "FBC Nyköping vs Åkersberga IBF",
+    "type": "match",
+    "date": "2025-09-27",
+    "startTime": "15:00",
+    "location": "Sporthallen",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 2. Första hemmamatch för säsongen!",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "hemmamatch", "första-hemma"],
+    "important": true,
+    "color": "#00D4AA"
+  },
+  {
+    "id": "match-580032018",
+    "title": "FBC Sollentuna vs FBC Nyköping",
+    "type": "match",
+    "date": "2025-10-04",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "location": "Sollentuna Sporthall",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 3. Bortamatch mot FBC Sollentuna.",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "bortamatch"],
+    "important": true,
+    "color": "#FF6B35"
+  },
+  {
+    "id": "match-580032019",
+    "title": "FBC Nyköping vs Rosersberg Arlanda IBK",
+    "type": "match",
+    "date": "2025-10-11",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "location": "Sporthallen",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 4. Hemmamatch mot Rosersberg Arlanda IBK.",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "hemmamatch"],
+    "important": true,
+    "color": "#00D4AA"
+  },
+  {
+    "id": "match-580032026",
+    "title": "Huddinge IBS vs FBC Nyköping",
+    "type": "match",
+    "date": "2025-10-25",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "location": "Huddinge Sporthall",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 5. Bortamatch mot Huddinge IBS.",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "bortamatch"],
+    "important": true,
+    "color": "#FF6B35"
+  },
+  {
+    "id": "match-580032034",
+    "title": "FBC Nyköping vs Hässelby SK IBK",
+    "type": "match",
+    "date": "2025-11-01",
+    "startTime": "15:00",
+    "endTime": "16:30",
+    "location": "Sporthallen",
+    "description": "Division 1 Herrar Södra Svealand - Omgång 6. Hemmamatch mot Hässelby SK IBK.",
+    "createdBy": "leader1",
+    "participants": [],
+    "comments": [],
+    "tags": ["division1", "hemmamatch"],
+    "important": true,
+    "color": "#00D4AA"
   }
+  ,
+    {"id": "match-20250912", "title": "Åby Oilers IBK vs FBC Nyköping", "type": "match", "date": "2025-09-12", "startTime": "19:00", "location": "Åby Arena", "description": "Träningsmatch inför säsongsstart. Samling 17:30 (1,5 timme före matchstart).", "participants": [], "comments": [], "important": false},
+    {"id": "match-20251112", "title": "Nykvarns IF Utveckling vs FBC Nyköping", "type": "match", "date": "2025-11-12", "startTime": "19:00", "location": "Nykvarn Sporthall", "description": "Division 1 Herrar Södra Svealand - Omgång 7. Bortamatch mot Nykvarns IF Utveckling.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20251115", "title": "FBC Nyköping vs Djurgårdens IF IBS", "type": "match", "date": "2025-11-15", "startTime": "15:00", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 8. Hemmamatch mot Djurgårdens IF IBS.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20251129", "title": "Nacka IBK vs FBC Nyköping", "type": "match", "date": "2025-11-29", "startTime": "15:00", "location": "Nacka Sporthall", "description": "Division 1 Herrar Södra Svealand - Omgång 10. Bortamatch mot Nacka IBK.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20251206", "title": "FBC Nyköping vs Värmdö IF", "type": "match", "date": "2025-12-06", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 11. Hemmamatch mot Värmdö IF.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20251220", "title": "FBC Nyköping vs Älvsjö AIK IBF", "type": "match", "date": "2025-12-20", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 12. Hemmamatch mot Älvsjö AIK IBF - sista matchen före jul!", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260104", "title": "Åkersberga IBF vs FBC Nyköping", "type": "match", "date": "2026-01-04", "startTime": "15:00", "endTime": "16:30", "location": "Åkersberga Sporthall", "description": "Division 1 Herrar Södra Svealand - Omgång 13. Första match efter nyår!", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260111", "title": "FBC Nyköping vs FBC Sollentuna", "type": "match", "date": "2026-01-11", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 14. Hemmamatch mot FBC Sollentuna.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260118", "title": "Rosersberg Arlanda IBK vs FBC Nyköping", "type": "match", "date": "2026-01-18", "startTime": "15:00", "endTime": "16:30", "location": "Rosersberg Sporthall", "description": "Division 1 Herrar Södra Svealand - Omgång 15. Bortamatch mot Rosersberg Arlanda IBK.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260125", "title": "FBC Nyköping vs Huddinge IBS", "type": "match", "date": "2026-01-25", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 16. Hemmamatch mot Huddinge IBS.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260201", "title": "Hässelby SK IBK vs FBC Nyköping", "type": "match", "date": "2026-02-01", "startTime": "15:00", "endTime": "16:30", "location": "Hässelbyhallen", "description": "Division 1 Herrar Södra Svealand - Omgång 17. Bortamatch mot Hässelby SK IBK.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260208", "title": "FBC Nyköping vs Nykvarns IF Utveckling", "type": "match", "date": "2026-02-08", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 18. Hemmamatch mot Nykvarns IF Utveckling.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260215", "title": "Djurgårdens IF IBS vs FBC Nyköping", "type": "match", "date": "2026-02-15", "startTime": "15:00", "endTime": "16:30", "location": "Eriksdalshallen", "description": "Division 1 Herrar Södra Svealand - Omgång 19. Bortamatch mot Djurgårdens IF IBS i Eriksdalshallen.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260222", "title": "FBC Nyköping vs Farsta IBK", "type": "match", "date": "2026-02-22", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 20. Hemmamatch mot Farsta IBK.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260301", "title": "FBC Nyköping vs Nacka IBK", "type": "match", "date": "2026-03-01", "startTime": "15:00", "endTime": "16:30", "location": "Sporthallen", "description": "Division 1 Herrar Södra Svealand - Omgång 21. Hemmamatch mot Nacka IBK.", "participants": [], "comments": [], "important": true},
+    {"id": "match-20260307", "title": "Värmdö IF vs FBC Nyköping", "type": "match", "date": "2026-03-07", "startTime": "16:30", "location": "Värmdö Sporthall", "description": "Division 1 Herrar Södra Svealand - Omgång 22. SISTA MATCHEN för säsongen!", "participants": [], "comments": [], "important": true}
 ]
