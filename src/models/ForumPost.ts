@@ -5,13 +5,15 @@ export interface IForumPost extends Document {
   title: string;
   content: string;
   createdAt: Date;
+  comments?: string[]; // Array of ForumComment ObjectIds
 }
 
 const ForumPostSchema: Schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   title: { type: String, required: true },
   content: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  comments: [{ type: Schema.Types.ObjectId, ref: 'ForumComment' }]
 });
 
 export default mongoose.model<IForumPost>('ForumPost', ForumPostSchema);
