@@ -34,11 +34,11 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const ForumPostSchema = new mongoose_1.Schema({
-    author: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
-    comments: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'ForumComment' }]
+const ForumCommentSchema = new mongoose_1.Schema({
+    author: { type: String, required: true },
+    text: { type: String, required: true },
+    date: { type: Date, default: Date.now },
+    likes: { type: Number, default: 0 },
+    replies: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'ForumComment' }]
 });
-exports.default = mongoose_1.default.model('ForumPost', ForumPostSchema);
+exports.default = mongoose_1.default.model('ForumComment', ForumCommentSchema);

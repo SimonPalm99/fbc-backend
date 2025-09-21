@@ -46,25 +46,25 @@ async function createUsersInAtlas() {
     }
 
     // Skapa även din personliga användare
+
     const userEmail = 'simon-palm@hotmail.com';
-    const userPassword = 'test123'; // Sätt ett känt lösenord
-    
+    const userPassword = 'Innebandy99'; // Sätt önskat lösenord
     let existingUser = await User.findOne({ email: userEmail });
+    const hashedPassword = await bcrypt.hash(userPassword, 10);
     if (existingUser) {
-      console.log('Simon Palm-användare finns redan i Atlas');
+      existingUser.password = hashedPassword;
+      await existingUser.save();
+      console.log('✅ Simon Palm-lösenord uppdaterat till "Innebandy99"!');
     } else {
-      const hashedPassword = await bcrypt.hash(userPassword, 10);
-      
       const personalUser = new User({
         name: 'Simon Palm',
         email: userEmail,
         password: hashedPassword,
-        role: 'admin', // Ge dig admin-rättigheter också
+        role: 'admin',
         status: 'approved'
       });
-
       await personalUser.save();
-      console.log('✅ Simon Palm-användare skapad i Atlas!');
+      console.log('✅ Simon Palm-användare skapad i Atlas med lösenord "Innebandy99"!');
     }
 
     // Lista alla användare

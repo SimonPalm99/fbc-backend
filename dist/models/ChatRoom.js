@@ -34,11 +34,12 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const ForumPostSchema = new mongoose_1.Schema({
-    author: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
-    comments: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'ForumComment' }]
+const ChatRoomSchema = new mongoose_1.Schema({
+    name: { type: String, required: true },
+    description: { type: String, default: '' },
+    avatar: { type: String, default: '' },
+    participants: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true }],
+    creatorId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
+    createdAt: { type: Date, default: Date.now }
 });
-exports.default = mongoose_1.default.model('ForumPost', ForumPostSchema);
+exports.default = mongoose_1.default.model('ChatRoom', ChatRoomSchema);
