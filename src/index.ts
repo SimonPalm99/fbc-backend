@@ -1,5 +1,6 @@
 // ...existing code...
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -29,6 +30,7 @@ app.use(cors({
   origin: 'https://fbc-nykoping-lagapp.vercel.app',
   credentials: true
 }));
+app.use(cookieParser());
 app.use(express.json());
 
 // Logging middleware för alla requests
