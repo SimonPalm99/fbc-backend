@@ -26,7 +26,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: true,
+  origin: 'https://fbc-nykoping-lagapp.vercel.app',
   credentials: true
 }));
 app.use(express.json());
