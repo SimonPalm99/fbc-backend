@@ -9,7 +9,7 @@ export interface IForumComment extends Document {
 }
 
 const ForumCommentSchema: Schema = new Schema({
-  author: { type: String, required: true },
+  author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   text: { type: String, required: true },
   date: { type: Date, default: Date.now },
   likes: { type: Number, default: 0 },
