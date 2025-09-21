@@ -1,6 +1,6 @@
 // ...existing code...
 import express from 'express';
-import cookieParser from 'cookie-parser';
+const cookieParser = require('cookie-parser');
 import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
