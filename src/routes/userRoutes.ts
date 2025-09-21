@@ -1,3 +1,10 @@
+// Utöka Express Request-typen med user-property
+import { Request } from 'express';
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: string;
+  }
+}
 import express from 'express';
 import User from '../models/User';
 import bcrypt from 'bcryptjs';
@@ -5,6 +12,20 @@ import jwt from 'jsonwebtoken';
 import { authenticateToken, requireLeaderOrAdmin, AuthRequest } from '../middleware/auth';
 
 const router = express.Router();
+// Hämta aktuell användare baserat på token
+router.get('/me', authenticateToken, async (req, res) => {
+  try {
+    // auth-middleware sätter req.userId
+  // auth-middleware sätter req.user till userId
+  const userId = req.user;
+    if (!userId) return res.status(401).json({ error: 'Ingen användare hittades' });
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ error: 'Användaren finns inte' });
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(400).json({ error: (err as Error).message });
+  }
+});
 
 // Register
 router.post('/register', async (req, res) => {
