@@ -29,22 +29,34 @@ dotenv.config();
 const app = express();
 // CORS-middleware först!
 app.use(cors({
-  origin: 'https://fbc-nykoping-lagapp.vercel.app',
+  origin: [
+    'https://fbc-nykoping-lagapp.vercel.app',
+    'http://localhost:3000'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   exposedHeaders: ['Set-Cookie']
 }));
 app.options('*', cors({
-  origin: 'https://fbc-nykoping-lagapp.vercel.app',
+  origin: [
+    'https://fbc-nykoping-lagapp.vercel.app',
+    'http://localhost:3000'
+  ],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   exposedHeaders: ['Set-Cookie']
 }));
 // ...sedan övrig middleware
+
 app.use(cookieParser());
 app.use(express.json());
+
+// Generell OPTIONS-handler för alla /api/* routes
+app.options('/api/*', (req, res) => {
+  res.sendStatus(200);
+});
 
 // Logging middleware för alla requests
 app.use((req, res, next) => {
