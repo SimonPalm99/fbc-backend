@@ -28,7 +28,18 @@ dotenv.config();
 const app = express();
 app.use(cors({
   origin: 'https://fbc-nykoping-lagapp.vercel.app',
-  credentials: true
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  exposedHeaders: ['Set-Cookie']
+}));
+// Hantera preflight OPTIONS-request explicit
+app.options('*', cors({
+  origin: 'https://fbc-nykoping-lagapp.vercel.app',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  exposedHeaders: ['Set-Cookie']
 }));
 app.use(cookieParser());
 app.use(express.json());
