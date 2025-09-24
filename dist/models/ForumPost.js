@@ -39,6 +39,12 @@ const ForumPostSchema = new mongoose_1.Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
     createdAt: { type: Date, default: Date.now },
+    pinned: { type: Boolean, default: false },
+    media: { type: String },
+    poll: [{ type: String }],
+    pollVotes: [{ type: Number }],
+    pollVoters: [{ type: String }],
+    likes: { type: Number, default: 0 },
     comments: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'ForumComment' }]
 });
 exports.default = mongoose_1.default.model('ForumPost', ForumPostSchema);

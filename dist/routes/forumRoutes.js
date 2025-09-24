@@ -32,7 +32,20 @@ router.get('/posts', async (req, res) => {
 router.post('/posts', async (req, res) => {
     try {
         console.log('POST /forum/posts req.body:', req.body);
-        const post = new ForumPost_1.default(req.body);
+        // Skapa post med alla fält från frontend
+        const post = new ForumPost_1.default({
+            author: req.body.author,
+            title: req.body.title,
+            content: req.body.content,
+            createdAt: req.body.createdAt || Date.now(),
+            pinned: req.body.pinned || false,
+            media: req.body.media,
+            poll: req.body.poll,
+            pollVotes: req.body.pollVotes,
+            pollVoters: req.body.pollVoters,
+            likes: req.body.likes || 0,
+            comments: req.body.comments || []
+        });
         await post.save();
         res.status(201).json(post);
     }

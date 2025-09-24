@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 // ...existing code...
 const express_1 = __importDefault(require("express"));
+const cookieParser = require('cookie-parser');
 const cors_1 = __importDefault(require("cors"));
 const mongoose_1 = __importDefault(require("mongoose"));
 const dotenv_1 = __importDefault(require("dotenv"));
@@ -27,10 +28,23 @@ const checkInOutRoutes_1 = __importDefault(require("./routes/checkInOutRoutes"))
 const checkQuestionRoutes_1 = __importDefault(require("./routes/checkQuestionRoutes"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
+// CORS-middleware först!
 app.use((0, cors_1.default)({
-    origin: true,
-    credentials: true
+    origin: 'https://fbc-nykoping-lagapp.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    exposedHeaders: ['Set-Cookie']
 }));
+app.options('*', (0, cors_1.default)({
+    origin: 'https://fbc-nykoping-lagapp.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+    exposedHeaders: ['Set-Cookie']
+}));
+// ...sedan övrig middleware
+app.use(cookieParser());
 app.use(express_1.default.json());
 // Logging middleware för alla requests
 app.use((req, res, next) => {

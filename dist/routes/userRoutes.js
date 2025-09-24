@@ -7,7 +7,29 @@ const express_1 = __importDefault(require("express"));
 const User_1 = __importDefault(require("../models/User"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const auth_1 = require("../middleware/auth");
 const router = express_1.default.Router();
+// Hämta aktuell användare baserat på token
+router.get('/me', auth_1.authenticateToken, async (req, res) => {
+    try {
+        // auth-middleware sätter req.userId
+        // auth-middleware sätter req.user till userId
+        const userId = req.user;
+        if (!userId)
+            return res.status(401).json({ error: 'Ingen användare hittades' });
+        const user = await User_1.default.findById(userId);
+        if (!user)
+            return res.status(404).json({ error: 'Användaren finns inte' });
+        // Returnera _id som sträng och även id
+        const userObj = user.toObject();
+        userObj._id = user._id.toString();
+        userObj.id = user._id.toString();
+        res.json({ success: true, data: userObj });
+    }
+    catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
 // Register
 router.post('/register', async (req, res) => {
     try {
@@ -79,14 +101,13 @@ router.post('/login', async (req, res) => {
         if (!isMatch)
             return res.status(401).json({ error: 'Invalid credentials' });
         const token = jsonwebtoken_1.default.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || '', { expiresIn: '1d' });
-        res.json({
-            user,
-            tokens: {
-                accessToken: token,
-                refreshToken: token, // För nu använder vi samma token
-                expiresIn: 86400 // 24 timmar i sekunder
-            }
+        res.cookie('fbc_access_token', token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none', // viktigt för cross-origin!
+            maxAge: 86400000 // 1 dag
         });
+        res.json({ user });
     }
     catch (err) {
         res.status(400).json({ error: err.message });
