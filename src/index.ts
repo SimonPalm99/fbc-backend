@@ -25,7 +25,9 @@ import checkQuestionRoutes from './routes/checkQuestionRoutes';
 dotenv.config();
 
 
+
 const app = express();
+// CORS-middleware först!
 app.use(cors({
   origin: 'https://fbc-nykoping-lagapp.vercel.app',
   credentials: true,
@@ -33,7 +35,6 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   exposedHeaders: ['Set-Cookie']
 }));
-// Hantera preflight OPTIONS-request explicit
 app.options('*', cors({
   origin: 'https://fbc-nykoping-lagapp.vercel.app',
   credentials: true,
@@ -41,6 +42,7 @@ app.options('*', cors({
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   exposedHeaders: ['Set-Cookie']
 }));
+// ...sedan övrig middleware
 app.use(cookieParser());
 app.use(express.json());
 
