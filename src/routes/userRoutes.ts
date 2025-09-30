@@ -102,14 +102,23 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     console.log('Password match:', isMatch);
     if (!isMatch) return res.status(401).json({ error: 'Invalid credentials' });
-    const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || '', { expiresIn: '1d' });
-    res.cookie('fbc_access_token', token, {
+    const accessToken = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || '', { expiresIn: '1d' });
+    // Skapa en dummy refreshToken (implementera riktig om du vill ha refresh-flöde)
+    const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET || '', { expiresIn: '7d' });
+    res.cookie('fbc_access_token', accessToken, {
       httpOnly: true,
       secure: true,
       sameSite: 'none', // viktigt för cross-origin!
       maxAge: 86400000 // 1 dag
     });
-    res.json({ user });
+    res.json({
+      user,
+      tokens: {
+        accessToken,
+        refreshToken,
+        expiresIn: 86400 // sekunder (1 dag)
+      }
+    });
   } catch (err) {
     res.status(400).json({ error: (err as Error).message });
   }
