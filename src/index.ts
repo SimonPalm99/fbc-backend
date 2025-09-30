@@ -51,7 +51,8 @@ app.use(cors({
 app.options('*', (req, res) => {
   const allowedOrigins = [
     'https://fbc-nykoping-lagapp.vercel.app',
-    'http://localhost:3000'
+    'http://localhost:3000',
+    'https://fbc-nykoping-lagapp-d8yden4svz-simon-palms-projects.vercel.app'
   ];
   let origin = req.headers.origin;
   if (!origin || !allowedOrigins.includes(origin)) {
