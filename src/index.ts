@@ -48,7 +48,15 @@ app.use(cors({
 
 // Generell OPTIONS-handler för alla routes
 app.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  const allowedOrigins = [
+    'https://fbc-nykoping-lagapp.vercel.app',
+    'http://localhost:3000'
+  ];
+  let origin = req.headers.origin;
+  if (!origin || !allowedOrigins.includes(origin)) {
+    origin = allowedOrigins[0]; // default to Vercel om origin saknas eller är fel
+  }
+  res.header('Access-Control-Allow-Origin', origin);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,Accept');
