@@ -31,9 +31,9 @@ const app = express();
 app.use(cors({
   origin: function (origin, callback) {
     const allowedOrigins = [
-  'https://fbc-nykoping-lagapp.vercel.app',
-  'http://localhost:3000',
-  'https://fbc-nykoping-lagapp-d8yden4svz-simon-palms-projects.vercel.app'
+      'https://fbc-nykoping-lagapp.vercel.app',
+      'http://localhost:3000',
+      'https://fbc-backend-chlg.onrender.com'
     ];
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -52,7 +52,8 @@ app.options('*', (req, res) => {
   const allowedOrigins = [
     'https://fbc-nykoping-lagapp.vercel.app',
     'http://localhost:3000',
-    'https://fbc-nykoping-lagapp-d8yden4svz-simon-palms-projects.vercel.app'
+    'https://fbc-nykoping-lagapp-d8yenv4svz-simon-palms-projects.vercel.app',
+    'https://fbc-backend-chlg.onrender.com'
   ];
   let origin = req.headers.origin;
   if (!origin || !allowedOrigins.includes(origin)) {
