@@ -30,25 +30,40 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 // CORS-middleware först!
 app.use((0, cors_1.default)({
-    origin: [
-        'https://fbc-nykoping-lagapp.vercel.app',
-        'http://localhost:3000'
-    ],
+    origin: function (origin, callback) {
+        const allowedOrigins = [
+            'https://fbc-nykoping-lagapp.vercel.app',
+            'http://localhost:3000'
+        ];
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     exposedHeaders: ['Set-Cookie']
 }));
-app.options('*', (0, cors_1.default)({
-    origin: [
+// Generell OPTIONS-handler för alla routes
+app.options('*', (req, res) => {
+    const allowedOrigins = [
         'https://fbc-nykoping-lagapp.vercel.app',
         'http://localhost:3000'
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-    exposedHeaders: ['Set-Cookie']
-}));
+    ];
+    let origin = req.headers.origin;
+    if (!origin || !allowedOrigins.includes(origin)) {
+        origin = allowedOrigins[0]; // default to Vercel om origin saknas eller är fel
+    }
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,Accept');
+    res.header('Access-Control-Expose-Headers', 'Set-Cookie');
+    res.sendStatus(200);
+});
 // ...sedan övrig middleware
 app.use(cookieParser());
 app.use(express_1.default.json());

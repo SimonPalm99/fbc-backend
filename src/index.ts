@@ -29,18 +29,7 @@ dotenv.config();
 const app = express();
 // CORS-middleware först!
 app.use(cors({
-  origin: function (origin, callback) {
-    const allowedOrigins = [
-      'https://fbc-nykoping-lagapp.vercel.app',
-      'http://localhost:3000',
-      'https://fbc-backend-chlg.onrender.com'
-    ];
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: 'https://fbc-nykoping-lagapp.vercel.app',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
@@ -49,15 +38,10 @@ app.use(cors({
 
 // Generell OPTIONS-handler för alla routes
 app.options('*', (req, res) => {
-  const allowedOrigins = [
-    'https://fbc-nykoping-lagapp.vercel.app',
-    'http://localhost:3000',
-    'https://fbc-nykoping-lagapp-d8yenv4svz-simon-palms-projects.vercel.app',
-    'https://fbc-backend-chlg.onrender.com'
-  ];
+  const allowedOrigin = 'https://fbc-nykoping-lagapp.vercel.app';
   let origin = req.headers.origin;
-  if (!origin || !allowedOrigins.includes(origin)) {
-    origin = allowedOrigins[0]; // default to Vercel om origin saknas eller är fel
+  if (origin !== allowedOrigin) {
+    origin = allowedOrigin;
   }
   res.header('Access-Control-Allow-Origin', origin);
   res.header('Access-Control-Allow-Credentials', 'true');
