@@ -108,17 +108,20 @@ router.post('/login', async (req, res) => {
     // Sätt persistent cookie med rätt domän och expires
     // Anpassa cookie-inställningar beroende på miljö
     const isProduction = process.env.NODE_ENV === 'production';
-    const cookieOptions = {
+    // Typen CookieOptions kräver att egenskaperna anges direkt
+    let cookieOptions: import('express').CookieOptions = {
       httpOnly: true,
       sameSite: isProduction ? 'none' : 'lax',
       maxAge: 86400000, // 1 dag
       expires: new Date(Date.now() + 86400000)
     };
     if (isProduction) {
-      cookieOptions.secure = true;
-      if (process.env.COOKIE_DOMAIN) {
-        cookieOptions.domain = process.env.COOKIE_DOMAIN;
-      }
+      cookieOptions = {
+        ...cookieOptions,
+        secure: true,
+        sameSite: 'none',
+        domain: process.env.COOKIE_DOMAIN || undefined
+      };
     }
     res.cookie('fbc_access_token', accessToken, cookieOptions);
     res.json({
