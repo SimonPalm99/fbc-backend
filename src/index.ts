@@ -39,12 +39,13 @@ app.use(cors({
 }));
 
 // Generell OPTIONS-handler för alla routes
-// ...sedan övrig middleware
+
+// Publik route för statiska filer (t.ex. manifest.json, bilder, etc)
+import path from 'path';
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(cookieParser());
 app.use(express.json());
-
-// Generell OPTIONS-handler för alla /api/* routes
 
 // Logging middleware för alla requests
 app.use((req, res, next) => {
