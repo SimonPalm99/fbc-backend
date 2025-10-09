@@ -28,17 +28,10 @@ dotenv.config();
 
 const app = express();
 // CORS-middleware först!
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://fbc-nykoping-lagapp.vercel.app'];
+
+// Tillåt alla origins och credentials (för test och multi-plattform)
 app.use(cors({
-  origin: function (origin, callback) {
-    // Tillåt requests utan origin (t.ex. curl, Postman)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error('Not allowed by CORS'), false);
-    }
-  },
+  origin: true, // Tillåt alla origins
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
