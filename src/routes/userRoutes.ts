@@ -105,12 +105,22 @@ router.post('/login', async (req, res) => {
     const accessToken = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET || '', { expiresIn: '1d' });
     // Skapa en dummy refreshToken (implementera riktig om du vill ha refresh-flöde)
     const refreshToken = jwt.sign({ id: user._id }, process.env.JWT_SECRET || '', { expiresIn: '7d' });
-    res.cookie('fbc_access_token', accessToken, {
+    // Sätt persistent cookie med rätt domän och expires
+    // Anpassa cookie-inställningar beroende på miljö
+    const isProduction = process.env.NODE_ENV === 'production';
+    const cookieOptions = {
       httpOnly: true,
-      secure: true,
-      sameSite: 'none', // viktigt för cross-origin!
-      maxAge: 86400000 // 1 dag
-    });
+      sameSite: isProduction ? 'none' : 'lax',
+      maxAge: 86400000, // 1 dag
+      expires: new Date(Date.now() + 86400000)
+    };
+    if (isProduction) {
+      cookieOptions.secure = true;
+      if (process.env.COOKIE_DOMAIN) {
+        cookieOptions.domain = process.env.COOKIE_DOMAIN;
+      }
+    }
+    res.cookie('fbc_access_token', accessToken, cookieOptions);
     res.json({
       user,
       tokens: {
