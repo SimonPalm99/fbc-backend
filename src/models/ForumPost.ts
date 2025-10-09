@@ -7,10 +7,14 @@ export interface IForumPost extends Document {
   createdAt: Date;
   pinned?: boolean;
   media?: string;
-  poll?: string[];
-  pollVotes?: number[];
-  pollVoters?: string[];
-  likes?: number;
+  poll?: {
+    question: string;
+    options: string[];
+    votes: number[];
+    voters: string[];
+  };
+  tags?: string[];
+  likes?: string[]; // Array of User ObjectIds
   comments?: string[]; // Array of ForumComment ObjectIds
 }
 
@@ -21,10 +25,14 @@ const ForumPostSchema: Schema = new Schema({
   createdAt: { type: Date, default: Date.now },
   pinned: { type: Boolean, default: false },
   media: { type: String },
-  poll: [{ type: String }],
-  pollVotes: [{ type: Number }],
-  pollVoters: [{ type: String }],
-  likes: { type: Number, default: 0 },
+  poll: {
+    question: { type: String },
+    options: [{ type: String }],
+    votes: [{ type: Number }],
+    voters: [{ type: Schema.Types.ObjectId, ref: 'User' }]
+  },
+  tags: [{ type: String }],
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   comments: [{ type: Schema.Types.ObjectId, ref: 'ForumComment' }]
 });
 

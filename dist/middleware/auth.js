@@ -32,4 +32,22 @@ function authenticateToken(req, res, next) {
         return res.status(401).json({ error: 'Ogiltig eller utgången token' });
     }
 }
-function requireLeaderOrAdmin(req, res, next) { next(); }
+const User_1 = __importDefault(require("../models/User"));
+async function requireLeaderOrAdmin(req, res, next) {
+    try {
+        // Hämta användare från databas
+        const userId = req.user;
+        if (!userId)
+            return res.status(401).json({ error: 'Ingen användare' });
+        const user = await User_1.default.findById(userId);
+        if (!user)
+            return res.status(401).json({ error: 'Användaren finns inte' });
+        if (user.role === 'leader' || user.role === 'admin' || user.role === 'coach') {
+            return next();
+        }
+        return res.status(403).json({ error: 'Endast ledare eller admin kan utföra denna åtgärd' });
+    }
+    catch (err) {
+        return res.status(500).json({ error: 'Serverfel vid behörighetskontroll' });
+    }
+}

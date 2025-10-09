@@ -102,6 +102,77 @@ router.delete('/:id', async (req: Request, res: Response) => {
 });
 
 // Add comment to post
+// Like/unlike a post
+router.post('/:id/like', async (req: Request, res: Response) => {
+  try {
+    const post = await ForumPost.findById(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    const userId = req.body.userId;
+    if (!userId) return res.status(400).json({ error: 'Missing userId' });
+    const index = post.likes?.findIndex(id => id.toString() === userId);
+    if (index !== undefined && index >= 0) {
+      post.likes?.splice(index, 1); // Unlike
+    } else {
+      post.likes?.push(userId); // Like
+    }
+    await post.save();
+    res.json(post);
+  } catch (err) {
+    res.status(400).json({ error: (err as Error).message });
+  }
+});
+
+// Vote in poll
+router.post('/:id/poll', async (req: Request, res: Response) => {
+  try {
+    const post = await ForumPost.findById(req.params.id);
+    if (!post || !post.poll) return res.status(404).json({ error: 'Poll not found' });
+    const { userId, optionIndex } = req.body;
+    if (typeof optionIndex !== 'number' || !userId) return res.status(400).json({ error: 'Missing data' });
+    if (post.poll.voters?.includes(userId)) return res.status(400).json({ error: 'Already voted' });
+    post.poll.votes[optionIndex] = (post.poll.votes[optionIndex] || 0) + 1;
+    post.poll.voters.push(userId);
+    await post.save();
+    res.json(post);
+  } catch (err) {
+    res.status(400).json({ error: (err as Error).message });
+  }
+});
+
+// Add tags to post
+router.post('/:id/tags', async (req: Request, res: Response) => {
+  try {
+    const post = await ForumPost.findById(req.params.id);
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    const { tags } = req.body;
+    if (!Array.isArray(tags)) return res.status(400).json({ error: 'Tags must be array' });
+    post.tags = Array.from(new Set([...(post.tags || []), ...tags]));
+    await post.save();
+    res.json(post);
+  } catch (err) {
+    res.status(400).json({ error: (err as Error).message });
+  }
+});
+
+// Like/unlike a comment
+router.post('/comment/:commentId/like', async (req: Request, res: Response) => {
+  try {
+    const comment = await ForumComment.findById(req.params.commentId);
+    if (!comment) return res.status(404).json({ error: 'Comment not found' });
+    const userId = req.body.userId;
+    if (!userId) return res.status(400).json({ error: 'Missing userId' });
+    const index = comment.likes?.findIndex(id => id.toString() === userId);
+    if (index !== undefined && index >= 0) {
+      comment.likes?.splice(index, 1); // Unlike
+    } else {
+      comment.likes?.push(userId); // Like
+    }
+    await comment.save();
+    res.json(comment);
+  } catch (err) {
+    res.status(400).json({ error: (err as Error).message });
+  }
+});
 import ForumComment from '../models/ForumComment';
 router.post('/:id/comment', async (req: Request, res: Response) => {
   try {

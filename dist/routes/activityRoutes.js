@@ -42,7 +42,8 @@ router.post('/', async (req, res) => {
     }
 });
 // Update activity
-router.put('/:id', async (req, res) => {
+const auth_1 = require("../middleware/auth");
+router.put('/:id', auth_1.authenticateToken, auth_1.requireLeaderOrAdmin, async (req, res) => {
     try {
         const updated = await Activity_1.default.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(updated);
@@ -52,7 +53,7 @@ router.put('/:id', async (req, res) => {
     }
 });
 // Delete activity
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth_1.authenticateToken, auth_1.requireLeaderOrAdmin, async (req, res) => {
     try {
         await Activity_1.default.findByIdAndDelete(req.params.id);
         res.json({ success: true });

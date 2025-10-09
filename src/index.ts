@@ -28,8 +28,17 @@ dotenv.config();
 
 const app = express();
 // CORS-middleware först!
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://fbc-nykoping-lagapp.vercel.app'];
 app.use(cors({
-  origin: 'https://fbc-nykoping-lagapp.vercel.app',
+  origin: function (origin, callback) {
+    // Tillåt requests utan origin (t.ex. curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'), false);
+    }
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
@@ -37,28 +46,12 @@ app.use(cors({
 }));
 
 // Generell OPTIONS-handler för alla routes
-app.options('*', (req, res) => {
-  const allowedOrigin = 'https://fbc-nykoping-lagapp.vercel.app';
-  let origin = req.headers.origin;
-  if (origin !== allowedOrigin) {
-    origin = allowedOrigin;
-  }
-  res.header('Access-Control-Allow-Origin', origin);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,Accept');
-  res.header('Access-Control-Expose-Headers', 'Set-Cookie');
-  res.sendStatus(200);
-});
 // ...sedan övrig middleware
 
 app.use(cookieParser());
 app.use(express.json());
 
 // Generell OPTIONS-handler för alla /api/* routes
-app.options('/api/*', (req, res) => {
-  res.sendStatus(200);
-});
 
 // Logging middleware för alla requests
 app.use((req, res, next) => {
@@ -107,14 +100,20 @@ app.get('/api/test', async (req, res) => {
   });
 });
 
+
+const http = require('http');
+import { setupSocket } from './socket';
+
 const PORT = Number(process.env.PORT) || 5000;
 const MONGO_URI = process.env.MONGO_URI || '';
 console.log('Trying to connect to MongoDB:', MONGO_URI);
 mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('MongoDB connection successful');
-    app.listen(PORT, '0.0.0.0', () => {
-      console.log(`Server running on port ${PORT}`);
+    const server = http.createServer(app);
+    setupSocket(server);
+    server.listen(PORT, '0.0.0.0', () => {
+      console.log(`Server running (Express + Socket.io) on port ${PORT}`);
     });
   })
   .catch((err: any) => {

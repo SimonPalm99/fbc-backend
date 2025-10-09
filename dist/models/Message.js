@@ -36,8 +36,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
 const MessageSchema = new mongoose_1.Schema({
     sender: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
-    receiver: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: true },
+    receiver: { type: mongoose_1.Schema.Types.ObjectId, ref: 'User', required: false },
+    roomId: { type: mongoose_1.Schema.Types.ObjectId, ref: 'ChatRoom', required: true },
     content: { type: String, required: true },
+    type: { type: String, enum: ['text', 'emoji', 'file'], default: 'text' },
+    fileUrl: { type: String, default: '' },
     createdAt: { type: Date, default: Date.now }
 });
 exports.default = mongoose_1.default.model('Message', MessageSchema);

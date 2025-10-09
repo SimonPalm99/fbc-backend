@@ -29,17 +29,17 @@ const checkQuestionRoutes_1 = __importDefault(require("./routes/checkQuestionRou
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // CORS-middleware först!
+const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://fbc-nykoping-lagapp.vercel.app'];
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
-        const allowedOrigins = [
-            'https://fbc-nykoping-lagapp.vercel.app',
-            'http://localhost:3000'
-        ];
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
+        // Tillåt requests utan origin (t.ex. curl, Postman)
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
         }
         else {
-            callback(new Error('Not allowed by CORS'));
+            return callback(new Error('Not allowed by CORS'), false);
         }
     },
     credentials: true,
@@ -48,29 +48,10 @@ app.use((0, cors_1.default)({
     exposedHeaders: ['Set-Cookie']
 }));
 // Generell OPTIONS-handler för alla routes
-app.options('*', (req, res) => {
-    const allowedOrigins = [
-        'https://fbc-nykoping-lagapp.vercel.app',
-        'http://localhost:3000'
-    ];
-    let origin = req.headers.origin;
-    if (!origin || !allowedOrigins.includes(origin)) {
-        origin = allowedOrigins[0]; // default to Vercel om origin saknas eller är fel
-    }
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With,Accept');
-    res.header('Access-Control-Expose-Headers', 'Set-Cookie');
-    res.sendStatus(200);
-});
 // ...sedan övrig middleware
 app.use(cookieParser());
 app.use(express_1.default.json());
 // Generell OPTIONS-handler för alla /api/* routes
-app.options('/api/*', (req, res) => {
-    res.sendStatus(200);
-});
 // Logging middleware för alla requests
 app.use((req, res, next) => {
     console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
@@ -114,14 +95,18 @@ app.get('/api/test', async (req, res) => {
         time: new Date().toISOString()
     });
 });
+const http = require('http');
+const socket_1 = require("./socket");
 const PORT = Number(process.env.PORT) || 5000;
 const MONGO_URI = process.env.MONGO_URI || '';
 console.log('Trying to connect to MongoDB:', MONGO_URI);
 mongoose_1.default.connect(MONGO_URI)
     .then(() => {
     console.log('MongoDB connection successful');
-    app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server running on port ${PORT}`);
+    const server = http.createServer(app);
+    (0, socket_1.setupSocket)(server);
+    server.listen(PORT, '0.0.0.0', () => {
+        console.log(`Server running (Express + Socket.io) on port ${PORT}`);
     });
 })
     .catch((err) => {

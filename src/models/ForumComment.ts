@@ -4,7 +4,7 @@ export interface IForumComment extends Document {
   author: string;
   text: string;
   date: Date;
-  likes: number;
+  likes: string[]; // Array of User ObjectIds
   replies?: IForumComment[];
 }
 
@@ -12,7 +12,7 @@ const ForumCommentSchema: Schema = new Schema({
   author: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   text: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  likes: { type: Number, default: 0 },
+  likes: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   replies: [{ type: Schema.Types.ObjectId, ref: 'ForumComment' }]
 });
 
