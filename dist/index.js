@@ -29,7 +29,7 @@ const checkQuestionRoutes_1 = __importDefault(require("./routes/checkQuestionRou
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 // CORS-middleware först!
-const allowedOrigins = ['http://localhost:3000', 'http://localhost:3001', 'https://fbc-nykoping-lagapp.vercel.app'];
+const allowedOrigins = ['https://fbc-nykoping-lagapp.vercel.app'];
 app.use((0, cors_1.default)({
     origin: function (origin, callback) {
         // Tillåt requests utan origin (t.ex. curl, Postman)

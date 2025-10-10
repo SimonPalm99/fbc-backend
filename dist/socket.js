@@ -5,7 +5,7 @@ const socket_io_1 = require("socket.io");
 function setupSocket(server) {
     const io = new socket_io_1.Server(server, {
         cors: {
-            origin: ['http://localhost:3000', 'http://localhost:3001', 'https://fbc-nykoping-lagapp.vercel.app'],
+            origin: ['https://fbc-nykoping-lagapp.vercel.app'],
             credentials: true
         }
     });
